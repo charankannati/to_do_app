@@ -15,3 +15,18 @@ form.addEventListener('submit', async (event) => {
   console.log(todo);
   updateTodoList();
 });
+
+const updateTodoList = async () => {
+    const response = await fetch('http://localhost:3000/api/todos');
+    const todos = await response.json();
+    console.log(todos);
+    const list = document.getElementById('todo-list');
+    list.innerHTML = '';
+    for (const todo of todos) {
+      const item = document.createElement('li');
+      item.appendChild(document.createTextNode(todo.task));
+      list.appendChild(item);
+    }
+};
+
+updateTodoList();
