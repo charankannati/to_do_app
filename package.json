@@ -1,0 +1,22 @@
+{
+  "name": "to_do_app",
+  "version": "1.0.0",
+  "description": "This is my basic todo-list app",
+  "main": "app.js",
+  "scripts": {
+    "test": "node app.js"
+  },
+  "keywords": [
+    "nodejs",
+    "javascript",
+    "TODO"
+  ],
+  "author": "Charan",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.1",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "mongoose": "^6.9.1"
+  }
+}
