@@ -3,6 +3,8 @@
 * Add new feature Checkbox
 
 ```
+
+//index.js
 const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
     checkbox.checked = todo.completed;
@@ -19,4 +21,17 @@ const checkbox = document.createElement('input');
 });
 
 item.appendChild(checkbox);
+
+//app.js
+app.patch('/api/todos/:id', async (req, res) => {
+    try {
+      const todo = await Todo.findByIdAndUpdate(req.params.id, { completed: req.body.completed }, { new: true });
+      if (!todo) {
+        return res.status(404).send();
+      }
+      res.send(todo);
+    } catch (error) {
+      res.status(400).send(error);
+    }
+});
 ```
