@@ -2,7 +2,7 @@
 
 * Add new feature Checkbox
 
-
+```
 const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
     checkbox.checked = todo.completed;
@@ -14,9 +14,9 @@ const checkbox = document.createElement('input');
         },
         body: JSON.stringify({ completed: checkbox.checked }),
       });
-
       const updatedTodo = await response.json();
       console.log(updatedTodo);
-    });
+});
 
 item.appendChild(checkbox);
+```
