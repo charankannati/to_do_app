@@ -7,7 +7,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors())
 
-mongoose.connect('mongodb+srv://charan:0UwLSGmpttnmcZzL@cluster0.apsu8fn.mongodb.net/?retryWrites=true&w=majority', {
+mongoose.connect('mongodb+srv://Maddie:RFRrfmru8dqKHuuQ@cluster0.gx8bfpb.mongodb.net/?retryWrites=true&w=majority', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -34,6 +34,18 @@ app.post('/api/todos', async (req, res) => {
   const todo = new Todo({ task: req.body.task });
   try {
     await todo.save();
+    res.send(todo);
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
+app.patch('/api/todos/:id', async (req, res) => {
+  try {
+    const todo = await Todo.findByIdAndUpdate(req.params.id, { completed: req.body.completed }, { new: true });
+    if (!todo) {
+      return res.status(404).send();
+    }
     res.send(todo);
   } catch (error) {
     res.status(400).send(error);
