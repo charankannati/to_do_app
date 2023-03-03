@@ -7,7 +7,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors())
 
-mongoose.connect('mongodb+srv://charan:0UwLSGmpttnmcZzL@cluster0.apsu8fn.mongodb.net/?retryWrites=true&w=majority', {
+mongoose.connect('mongodb+srv://udupadivya24:QYSn7DCiEFqvqRQN@cluster0.rxjyhkp.mongodb.net/?retryWrites=true&w=majority', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -48,7 +48,17 @@ app.get('/api/todos', async (req, res) => {
       res.status(500).send(error);
     }
 });
-
+app.patch('/api/todos/:id', async (req, res) => {
+  try {
+    const todo = await Todo.findByIdAndUpdate(req.params.id, { completed: req.body.completed }, { new: true });
+    if (!todo) {
+      return res.status(404).send();
+    }
+    res.send(todo);
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
 app.listen(3000, () => {
     console.log('Server is listening on port 3000');
 });
